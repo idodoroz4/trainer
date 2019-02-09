@@ -4,7 +4,7 @@ class ButtonComp extends Component {
     render() {
       return(
        <div style={{ marginLeft: 150 }}>
-        <button>Start</button>
+        <button onClick={this.props.action} >{this.props.name}</button>
       </div>
        );
    }
