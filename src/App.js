@@ -9,22 +9,15 @@ import './App.css';
     constructor(props){
       super(props);
       this.state = {
-        seconds: '00',
-        minutes: '00',
+        seconds: 0,
+        minutes: 0,
+        secondsView: '00',
+        minutesView: '00',
         secondsRemaining: 0,
         status: 'clear'
       };
 
     this.intervalHandle = null;
-    }
-
-    handleChange = (event) => {
-      if ( event.target.value < 10) {
-        this.setState({
-          minutes: "0" + event.target.value,
-          secondsRemaining: event.target.value * 60
-        })
-      }
     }
 
     tick = () => {
@@ -83,26 +76,115 @@ import './App.css';
       clearInterval(this.intervalHandle)
       this.secondsRemaining = 0
       this.setState({
-        minutes: '00',
-        seconds: '00',
+        seconds: 0,
+        minutes: 0,
+        secondsView: '00',
+        minutesView: '00',
         secondsRemaining: 0,
-        status: "clear"
+        status: 'clear'
       })
+    }
+
+    minusSecond = () => {
+      if (this.state.seconds === 0){
+        return
+      }
+
+      this.secHandleChange(this.state.seconds - 1)
+    }
+
+    plusSecond = () => {
+      if (this.state.seconds === 59 && this.state.minutes === 59){
+          return
+      } else if (this.state.seconds === 59){
+          return
+      }
+
+      this.secHandleChange(this.state.seconds + 1)
+    }
+
+    minusMinute = () => {
+      if (this.state.minutes === 0){
+        return
+      } else {
+        var min = this.state.minutes - 1
+      }
+      this.minHandleChange(min)
+    }
+
+    plusMinute = () => {
+      if (this.state.minutes === 59){
+        return
+      } else {
+        var min = this.state.minutes + 1
+      }
+      this.minHandleChange(min)
+    }
+
+    minHandleChange = (min) => {
+      console.log(min)
+      if ( min < 10) {
+        this.setState({
+          minutesView: "0" + min,
+          minutes: min
+        })
+      } else {
+        this.setState({
+          minutesView: min,
+          minutes: min
+        })
+      }
+    }
+
+    secHandleChange = (sec) => {
+      if ( sec < 10) {
+        this.setState({
+          secondsView: "0" + sec,
+          seconds: sec
+        })
+      } else {
+        this.setState({
+          secondsView: sec,
+          seconds: sec
+        })
+      }
     }
 
      render() {
         return (
-         <div>
-          <TimerInput handleChange={this.handleChange}/>
-          <RoundInput/>
-          <Timer minutes={this.state.minutes} seconds={this.state.seconds}/>
-          { this.state.status === "clear" & this.state.secondsRemaining > 0 ? <ButtonComp action={this.startCountDown} name="Start"/> : null }
-          { this.state.status === "stopped" ? <ButtonComp action={this.startCountDown} name="Continue"/> : null }
-          { this.state.status === "active" ? <ButtonComp action={this.stopCountDown} name="Stop"/> : null }
-          { this.state.status === "stopped" ?  <ButtonComp action={this.resetCountDown} name="Reset"/> : null }
-        </div>
+          <div>
+            <TimerInput
+              minutes={this.state.minutesView}
+              seconds={this.state.secondsView}
+              plusSec={this.plusSecond}
+              minusSec={this.minusSecond}
+              plusMin={this.plusMinute}
+              minusMin={this.minusMinute}
+              title="Interval time"
+            />
+            <TimerInput
+              minutes={this.state.minutesView}
+              seconds={this.state.secondsView}
+              plusSec={this.plusSecond}
+              minusSec={this.minusSecond}
+              plusMin={this.plusMinute}
+              minusMin={this.minusMinute}
+              title="Rest time"
+            />
+            <RoundInput/>
+            <Timer minutes={this.state.minutes} seconds={this.state.seconds}/>
+            { this.state.status === "clear" ? <ButtonComp action={this.startCountDown} name="Start"/> : null }
+            { this.state.status === "stopped" ? <ButtonComp action={this.startCountDown} name="Continue"/> : null }
+            { this.state.status === "active" ? <ButtonComp action={this.stopCountDown} name="Stop"/> : null }
+            { this.state.status === "stopped" ?  <ButtonComp action={this.resetCountDown} name="Reset"/> : null }
+          </div>
+
        );
      }
    }
 
 export default App;
+
+/*
+
+*/
