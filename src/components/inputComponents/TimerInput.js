@@ -4,11 +4,11 @@ import Timer from '../Timer';
 
 const UpDownButtons = (props) => {
     return (
-        <div className="ui vertical icon buttons">
-            <button className="ui button" onClick={props.upClick}>
+        <div className="btn-group-vertical">
+            <button type="button" className="btn btn-outline-secondary" onClick={props.upClick}>
                 <i className="chevron up icon "></i>
             </button>
-            <button className="ui button" onClick={props.downClick}>
+            <button type="button" className="btn btn-outline-secondary" onClick={props.downClick}>
                 <i className="chevron down icon"></i>
             </button>
         </div>
@@ -18,29 +18,30 @@ const UpDownButtons = (props) => {
 class TimerInput extends Component {
     render() {
         return (
-            <div className="ui four column grid">
-                <div className="row" />
-                <div className="row">
-                    <div className="six wide column" />
-                    <div className="four wide column" style={{marginLeft: '70px'}}>
+            <div className="container">
+                <br /><br /><br />
+                <div className="row justify-content-md-center">
+                    <div className="col" />
+                    <div className="col">
                         <h1>{this.props.title}</h1>
                     </div>
+                    <div className="col" />
                 </div>
-                <div className="row">
-                    <div className="six wide column" />
-                    <div className="four wide column">
-                        <div className="ui horizontal statistic">
-                            <div className="label" style={{marginRight: '10px'}}>
+                <br />
+                <div className="row justify-content-md-center">
+                    <div className="col" />
+                    <div className="col">
+                        <div className="continer">
+                            <div className="row justify-content-md-center">
+
                                 <UpDownButtons upClick={this.props.plusMin} downClick={this.props.minusMin} />
-                            </div>
-                            <div className="value">
                                 <Timer minutes={this.props.minutes} seconds={this.props.seconds}/>
-                            </div>
-                            <div className="label">
                                 <UpDownButtons upClick={this.props.plusSec} downClick={this.props.minusSec}/>
+
                             </div>
                         </div>
                     </div>
+                    <div className="col" />
                 </div>
             </div>
         );
