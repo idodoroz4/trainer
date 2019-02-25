@@ -21,16 +21,16 @@ class TimerInput extends Component {
             <div className="container">
                 <br /><br /><br />
                 <div className="row justify-content-md-center">
-                    <div className="col" />
-                    <div className="col">
+
+                    <div className="col d-flex justify-content-center">
                         <h1>{this.props.title}</h1>
                     </div>
-                    <div className="col" />
+
                 </div>
                 <br />
                 <div className="row justify-content-md-center">
-                    <div className="col" />
-                    <div className="col">
+
+                    <div className="col d-flex justify-content-center">
                         <div className="continer">
                             <div className="row justify-content-md-center">
 
@@ -41,7 +41,7 @@ class TimerInput extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col" />
+
                 </div>
             </div>
         );

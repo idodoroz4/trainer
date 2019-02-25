@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import TimerInput from './components/inputComponents/TimerInput'
+import TimerInput from './components/inputComponents/TimerInput';
+import ClockView from './components/clockView';
 import './App.css';
 
   class App extends Component {
@@ -14,6 +15,10 @@ import './App.css';
         restMinutes: 0,
         restSecondsView: '00',
         restMinutesView: '00',
+        presSeconds: '00',
+        presMinutes: '00',
+        presSecondsView: '00',
+        presMinutesView: '00',
         secondsRemaining: 0,
         buttonStatus: 'clear',
         timerStatus: "none" // none, work, rest, finish
@@ -26,25 +31,31 @@ import './App.css';
       var min = Math.floor(this.state.secondsRemaining / 60);
       var sec = this.state.secondsRemaining % 60;
 
+      if ( sec === -1) {
+        clearInterval(this.intervalHandle);
+        this.setState({
+          secondsRemaining: 0,
+          buttonStatus: 'clear',
+          timerStatus: "none"
+        })
+        return
+      }
+
       this.setState({
-        minutes: min,
-        seconds: sec
+        presMinutes: min,
+        presSeconds: sec
       })
 
       if (sec < 10) {
         this.setState({
-          seconds: "0" + sec,
+          presSeconds: "0" + sec,
         })
       }
 
       if (min < 10) {
         this.setState({
-          minutes: "0" + min,
+          presMinutes: "0" + min,
         })
-      }
-
-      if (min === 0 & sec === 0) {
-        clearInterval(this.intervalHandle);
       }
 
       this.setState(prevState => {
@@ -53,16 +64,31 @@ import './App.css';
     }
 
     startCountDown = () => {
-      if ( this.state.status === 'active') {
+      if ( this.state.timerStatus === 'work') {
         return
       }
       console.log("Countdown started")
-      console.log(this.state)
-      this.secondsRemaining = this.state.minutes * 60 + this.state.seconds;
-      this.intervalHandle = setInterval(this.tick, 1000);
       this.setState({
-        buttonStatus: 'active'
+        presSeconds: this.state.workSeconds,
+        presMinutes: this.state.workMinutes,
+        buttonStatus: 'active',
+        secondsRemaining: this.state.workMinutes * 60 + this.state.workSeconds - 1
       })
+
+      if (this.state.workSeconds < 10) {
+        this.setState({
+          presSeconds: "0" + this.state.workSeconds,
+        })
+      }
+
+      if (this.state.workMinutes < 10) {
+        this.setState({
+          presMinutes: "0" + this.state.workMinutes,
+        })
+      }
+
+      this.intervalHandle = setInterval(this.tick, 1000);
+
     }
 
     stopCountDown = () => {
@@ -76,16 +102,7 @@ import './App.css';
     resetCountDown = () => {
       console.log("Countdown has been reset")
       clearInterval(this.intervalHandle)
-      this.secondsRemaining = 0
       this.setState({
-        workSeconds: 0,
-        workMinutes: 0,
-        workSecondsView: '00',
-        workMinutesView: '00',
-        restSeconds: 0,
-        restMinutes: 0,
-        restSecondsView: '00',
-        restMinutesView: '00',
         secondsRemaining: 0,
         buttonStatus: 'clear',
         timerStatus: "none"
@@ -226,32 +243,40 @@ import './App.css';
         return (
           <div className="container">
             <div>
-              <TimerInput
-                minutes={this.state.workMinutesView}
-                seconds={this.state.workSecondsView}
-                plusSec={this.workPlusSecond}
-                minusSec={this.workMinusSecond}
-                plusMin={this.workPlusMinute}
-                minusMin={this.workMinusMinute}
-                title="Interval time"
-              />
-              <TimerInput
-                minutes={this.state.restMinutesView}
-                seconds={this.state.restSecondsView}
-                plusSec={this.restPlusSecond}
-                minusSec={this.restMinusSecond}
-                plusMin={this.restPlusMinute}
-                minusMin={this.restMinusMinute}
-                title="Rest time"
-              />
+              { this.state.buttonStatus === "clear" &&
+                <div>
+                <TimerInput
+                  minutes={this.state.workMinutesView}
+                  seconds={this.state.workSecondsView}
+                  plusSec={this.workPlusSecond}
+                  minusSec={this.workMinusSecond}
+                  plusMin={this.workPlusMinute}
+                  minusMin={this.workMinusMinute}
+                  title="Interval time"
+                />
+                <TimerInput
+                  minutes={this.state.restMinutesView}
+                  seconds={this.state.restSecondsView}
+                  plusSec={this.restPlusSecond}
+                  minusSec={this.restMinusSecond}
+                  plusMin={this.restPlusMinute}
+                  minusMin={this.restMinusMinute}
+                  title="Rest time"
+                />
+              </div>
+              }
+              { this.state.buttonStatus !== "clear" &&
+                <div className="d-flex justify-content-center">
+                  <ClockView minutes={this.state.presMinutes} seconds={this.state.presSeconds} />
+                </div>
+              }
               <br/><br/><br/>
               <div className="row justify-content-md-center">
-                <div className="col " />
-                <div className="col ">
-                  { this.state.buttonStatus === "clear" ? <button className="btn btn-success" onClick={this.startCountDown}>START</button> : null }
-                  { this.state.buttonStatus === "stopped" ? <button className="btn btn-success" onClick={this.startCountDown}>CONTINUE</button> : null }
-                  { this.state.buttonStatus === "active" ? <button className="btn btn-danger" onClick={this.stopCountDown}>STOP</button> : null }
-                  { this.state.buttonStatus === "stopped" ?  <button className="btn btn-warning" onClick={this.resetCountDown}>RESET</button> : null }
+                <div className="col d-flex justify-content-center">
+                  { this.state.buttonStatus === "clear" ? <button disabled={ this.state.workMinutes + this.state.workSeconds > 0 ? false : true }  className="btn btn-success btn-lg" onClick={this.startCountDown}>START</button> : null }
+                  { this.state.buttonStatus === "stopped" ? <button className="btn btn-success btn-lg" onClick={this.startCountDown}>CONTINUE</button> : null }
+                  { this.state.buttonStatus === "active" ? <button className="btn btn-danger btn-lg" onClick={this.stopCountDown}>STOP</button> : null }
+                  { this.state.buttonStatus === "stopped" ?  <button className="btn btn-warning btn-lg" onClick={this.resetCountDown}>RESET</button> : null }
                 </div>
 
               </div>
