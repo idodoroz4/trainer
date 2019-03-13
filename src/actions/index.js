@@ -143,3 +143,9 @@ export const MinusRound = () => {
         type: 'MINUS_ROUND'
     }
 }
+
+export const NextRound = () => {
+    return {
+        type: 'NEXT_ROUND'
+    }
+}

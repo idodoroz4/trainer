@@ -12,7 +12,8 @@ import {
   WorkoutInterval,
   WorkoutRest,
   CurrentTime,
-  ClearRounds
+  ClearRounds,
+  NextRound,
 } from './actions';
 
 class App extends Component {
@@ -22,14 +23,26 @@ class App extends Component {
     this.tickTime = 1000 // should be 1000 for production. change to 100 for testing
   }
 
+  nextRound = () => {
+    if (this.props.rounds === this.props.currentRound){
+      // Workout ended
+      this.resetCountDown()
+    } else {
+      this.props.NextRound()
+      this.props.CurrentTime(this.props.intervalTime) // updates 'this.props.remainingSeconds'
+      this.props.WorkoutInterval()
+    }
+  }
+
   tick = () => {
-    console.log(this.props.remainingSeconds)
     if (this.props.remainingSeconds > 0){
       this.props.CurrentTime(this.props.remainingSeconds - 1)
+    } else if (this.props.restTime > 0 && this.props.workoutStatus === "INTERVAL") {
+        this.props.WorkoutRest()
+        this.props.CurrentTime(this.props.restTime)
     } else {
-      this.resetCountDown()
+      this.nextRound()
     }
-
   }
 
   switchWorkoutStatus = () => {
@@ -51,13 +64,16 @@ class App extends Component {
   }
 
   continueCountDown = () => {
+    console.log("Countdown continued")
     this.props.TimerActive()
     this.intervalHandle = setInterval(this.tick, this.tickTime);
   }
 
   startCountDown = () => {
+    console.log("Countdown started")
     this.props.TimerActive()
-    this.switchWorkoutStatus()
+    this.props.WorkoutInterval()
+    this.props.CurrentTime(this.props.intervalTime)
     this.intervalHandle = setInterval(this.tick, this.tickTime);
   }
 
@@ -78,7 +94,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.timerStatus)
     return (
       <div className="container">
         <div>
@@ -96,6 +111,12 @@ class App extends Component {
                 minutes={Math.floor(this.props.remainingSeconds / 60)}
                 seconds={this.props.remainingSeconds % 60}
               />
+              <br/><br/>
+              <div className="row justify-content-md-center">
+                <div className="col d-flex justify-content-center">
+                  <h2>{this.props.currentRound} / {this.props.rounds}</h2>
+                </div>
+              </div>
             </div>
           }
           <br/><br/><br/>
@@ -120,7 +141,9 @@ const mapStateToProps = (state) => {
         restTime: state.ChangeRestTime.restSeconds,
         timerStatus: state.TimerStatus.timerStatus,
         workoutStatus: state.WorkoutStatus.workoutStatus,
-        remainingSeconds: state.RemainingSeconds.remainingSeconds
+        remainingSeconds: state.RemainingSeconds.remainingSeconds,
+        currentRound: state.CurrentRound.currentRound,
+        rounds: state.RoundsCount.rounds
     };
 }
 
@@ -132,7 +155,8 @@ const actions = {
   WorkoutInterval,
   WorkoutRest,
   CurrentTime,
-  ClearRounds
+  ClearRounds,
+  NextRound
 }
 
 export default connect(mapStateToProps,actions)(App);;
