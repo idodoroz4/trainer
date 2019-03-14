@@ -6,7 +6,7 @@ class Timer extends Component {
     const min = this.props.minutes
     const sec = this.props.seconds
     return (
-      <div>
+      <div style={{ paddingLeft: 80, paddingRight: 80 }}>
         <div className="row d-flex justify-content-center">
           <h1>
             {this.props.title}
