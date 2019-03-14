@@ -8,17 +8,11 @@ import {
     IntervalMinMinus,
     IntervalSecPlus,
     IntervalSecMinus,
-    IntervalClear,
-    IntervalMinClear,
-    IntervalSecClear,
     RestMinPlus,
     RestMinMinus,
     RestSecPlus,
     RestSecMinus,
-    RestClear,
-    RestMinClear,
-    RestSecClear,
-} from '../../actions';
+} from './TimerInputActions';
 
 class TimerInput extends Component {
 
@@ -130,16 +124,10 @@ const actions = {
     IntervalMinMinus,
     IntervalSecPlus,
     IntervalSecMinus,
-    IntervalClear,
-    IntervalMinClear,
-    IntervalSecClear,
     RestMinPlus,
     RestMinMinus,
     RestSecPlus,
     RestSecMinus,
-    RestClear,
-    RestMinClear,
-    RestSecClear,
 }
 
 export default connect(mapStateToProps,actions)(TimerInput);

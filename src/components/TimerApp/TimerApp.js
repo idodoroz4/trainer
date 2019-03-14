@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TimerInput from './components/inputComponents/TimerInput';
-import RoundsInput from './components/inputComponents/RoundsInput';
-import Timer from './components/Timer';
-import './App.css';
+import TimerInput from '../TimerInput/TimerInput';
+import RoundsInput from '../RoundsInput/RoundsInput';
+import Timer from '../Timer';
 import {
   TimerClear,
   TimerStopped,
@@ -14,9 +13,9 @@ import {
   CurrentTime,
   ClearRounds,
   NextRound,
-} from './actions';
+} from './TimerAppActions';
 
-class App extends Component {
+class TimerApp extends Component {
   constructor(props){
     super(props);
     this.intervalHandle = null;
@@ -45,24 +44,6 @@ class App extends Component {
     }
   }
 
-  switchWorkoutStatus = () => {
-    switch (this.props.workoutStatus){
-      case "NONE": // Switch to interval // None -> Interval
-        this.props.WorkoutInterval()
-        this.props.CurrentTime(this.props.intervalTime)
-        break;
-      case "INTERVAL": // Switch to Rest // Interval -> Rest
-        this.props.WorkoutRest()
-        this.props.CurrentTime(this.props.restTime)
-        break;
-      case "REST": // Switch to Interval or None - depends on number of rounds left
-        this.props.WorkoutNone()
-        break;
-      default:
-        return
-    }
-  }
-
   continueCountDown = () => {
     console.log("Countdown continued")
     this.props.TimerActive()
@@ -81,7 +62,6 @@ class App extends Component {
     console.log("Countdown stopped")
     clearInterval(this.intervalHandle)
     this.props.TimerStopped()
-
   }
 
   resetCountDown = () => {
@@ -90,7 +70,6 @@ class App extends Component {
     this.props.TimerClear()
     this.props.WorkoutNone()
     this.props.ClearRounds()
-
   }
 
   render() {
@@ -159,4 +138,4 @@ const actions = {
   NextRound
 }
 
-export default connect(mapStateToProps,actions)(App);;
+export default connect(mapStateToProps,actions)(TimerApp);;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Timer extends Component {
   render() {
     const min = this.props.minutes
