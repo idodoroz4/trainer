@@ -107,7 +107,7 @@ class TimerInput extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col d-flex justify-content-around">
+                    <div className="col d-flex justify-content-center">
                         <UpDownButtons upClick={this.plusMinute} downClick={this.minusMinute} />
                         <Timer minutes={min} seconds={sec}/>
                         <UpDownButtons upClick={this.plusSecond} downClick={this.minusSecond}/>

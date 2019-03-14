@@ -6,7 +6,6 @@ import {
     MinusRound
 } from '../../actions'
 
-
 class RoundsInput extends Component {
     minusRound = () => {
         if (this.props.rounds > 1 ) {
@@ -15,7 +14,7 @@ class RoundsInput extends Component {
     }
     render() {
         return (
-            <div className="container">
+            <div className="container" >
                 <br /><br /><br />
                 <div className="row">
                     <div className="col d-flex justify-content-center">
@@ -24,13 +23,15 @@ class RoundsInput extends Component {
                 </div>
                 <br />
                 <div className="row">
-                    <div className="col d-flex justify-content-md-around">
+                    <div className="col d-flex justify-content-md-center">
                         <button type="button" className="btn btn-outline-secondary" onClick={this.minusRound }>
                             <i className="minus icon"></i>
                         </button>
-                        <h1 style={{ fontSize: 80 }}>
-                            {this.props.rounds}
-                        </h1>
+                        <div style={this.props.rounds > 9 ? { paddingLeft: 120, paddingRight: 120 } : { paddingLeft: 145, paddingRight: 145 }} >
+                            <h1 style={{ fontSize: 80 }}>
+                                {this.props.rounds}
+                            </h1>
+                        </div>
                         <button type="button" className="btn btn-outline-secondary" onClick={this.props.PlusRound}>
                             <i className="plus icon"></i>
                         </button>
