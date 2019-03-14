@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    ClearRounds,
     PlusRound,
     MinusRound
-} from '../../actions'
+} from './RoundsInputActions'
 
 class RoundsInput extends Component {
     minusRound = () => {
@@ -49,7 +48,6 @@ const mapStateToProps = (state) => {
 }
 
 const actions = {
-    ClearRounds,
     PlusRound,
     MinusRound
 }
