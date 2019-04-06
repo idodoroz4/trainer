@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TimerInput from '../TimerInput/TimerInput';
 import RoundsInput from '../RoundsInput/RoundsInput';
-import Timer from '../Timer';
+import Timer from '../GeneralComponents/Timer';
 import {
   TimerClear,
   TimerStopped,
