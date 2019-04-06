@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import TimerInput from '../TimerInput/TimerInput';
 import RoundsInput from '../RoundsInput/RoundsInput';
 import Timer from '../GeneralComponents/Timer';
+
 import {
   TimerClear,
   TimerStopped,
@@ -89,6 +90,7 @@ class TimerApp extends Component {
                 title={this.props.workoutStatus === "INTERVAL" ? "Workout" : "Rest"}
                 minutes={Math.floor(this.props.remainingSeconds / 60)}
                 seconds={this.props.remainingSeconds % 60}
+                playSound={true}
               />
               <br/><br/>
               <div className="row justify-content-md-center">
