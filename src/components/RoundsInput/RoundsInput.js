@@ -11,9 +11,8 @@ class RoundsInput extends Component {
             this.props.MinusRound()
         }
     }
-    render() {
-        return (
-            <div className="container" >
+    /*
+     <div className="container" >
                 <br /><br /><br />
                 <div className="row">
                     <div className="col d-flex justify-content-center">
@@ -37,6 +36,32 @@ class RoundsInput extends Component {
                     </div>
                 </div>
             </div>
+    */
+    render() {
+        return (
+            <div className="d-flex flex-row justify-content-around container body formRowWidth">
+                <div className="d-flex align-items-center formTitle">
+                    <h3>Rounds</h3>
+                </div>
+                <div className="d-flex flex-row justify-content-center flex-grow">
+                    <div className="d-flex justify-content-around">
+                        <button type="button" className="btn btn-outline-secondary" onClick={this.minusRound }>
+                            <i className="minus icon"></i>
+                        </button>
+                    </div>
+                    <div className="d-flex justify-content-center rowPresentation">
+                        <h1 style={{ fontSize: 40 }}>
+                            {this.props.rounds}
+                        </h1>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-outline-secondary" onClick={this.props.PlusRound}>
+                            <i className="plus icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         );
     }
 }
