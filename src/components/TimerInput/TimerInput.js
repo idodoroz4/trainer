@@ -80,7 +80,6 @@ class TimerInput extends Component {
             }
         }
     }
-
     render() {
         let min = 0
         let sec = 0
@@ -92,18 +91,18 @@ class TimerInput extends Component {
             sec = this.props.restTime.restSeconds % 60
         }
         return (
-            <div className="container">
-                <br /><br /><br />
-                <div className="row">
-                    <div className="col d-flex justify-content-center">
-                        <h1>{this.props.title}</h1>
-                    </div>
+            <div className="d-flex flex-row justify-content-around container body formRowWidth">
+                <div className="d-flex align-items-center formTitle">
+                    <h3>{this.props.title}</h3>
                 </div>
-
-                <div className="row">
-                    <div className="col d-flex justify-content-center">
+                <div className="d-flex flex-row justify-content-center flex-grow">
+                    <div className="d-flex justify-content-around">
                         <UpDownButtons upClick={this.plusMinute} downClick={this.minusMinute} />
+                    </div>
+                    <div className="d-flex justify-content-center rowPresentation">
                         <Timer minutes={min} seconds={sec}/>
+                    </div>
+                    <div className="d-flex justify-content-center">
                         <UpDownButtons upClick={this.plusSecond} downClick={this.minusSecond}/>
                     </div>
                 </div>

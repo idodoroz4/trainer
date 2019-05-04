@@ -9,17 +9,13 @@ class Timer extends Component {
     const playStatus = this.props.playSound ? Sound.status.PLAYING : Sound.status.STOPPED
     return (
       <div>
-        <div style={{ paddingLeft: 80, paddingRight: 80 }}>
-          <div className="row d-flex justify-content-center">
-            <h1>
-              {this.props.title}
-            </h1>
-          </div>
-          <div className="row d-flex justify-content-center">
-            <h1 style={{ fontSize: 80 }}>
-              { min < 10 ? "0" + min : min }:{ sec < 10 ? "0" + sec : sec }
-            </h1>
-          </div>
+        <div>
+          <h1>{this.props.title}</h1>
+        </div>
+        <div>
+          <h1 style={{ fontSize: 40 }}>
+            { min < 10 ? "0" + min : min }:{ sec < 10 ? "0" + sec : sec }
+          </h1>
         </div>
         <Sound
           url={soundfile}

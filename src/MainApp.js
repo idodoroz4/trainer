@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import TimerApp from './components/TimerApp/TimerApp'
+import TimerApp from './components/TimerApp/TimerApp';
+import Wrapper from './components/Wrapper/Wrapper';
 
-class MainApp extends Component {
-  render() {
-    return (
-      <TimerApp />
-
+const MainApp = () => {
+    return(
+      <div>
+        <Wrapper pageTitle="asd">
+          <TimerApp />
+        </Wrapper>
+      </div>
     )
-  }
 }
 
 export default MainApp;
