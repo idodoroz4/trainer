@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { ChangeMainPageTitle } from '../GeneralComponents/GeneralActions';
+import TitleComponent  from '../TitleComponent/TitleComponent';
+import  SidebarComponent from '../SidebarComponent/SidebarComponent';
 import styles from './styles.css';
 
 class Wrapper extends Component {
     render() {
         return (
             <div className="d-flex flex-column bd-highlight mb-3 justify-content-center container">
-                <div className="appTitle">
-                    {this.props.mainPageTitle}
-                </div>
+                <TitleComponent />
                 <div className="d-flex flex-row bd-highlight mb-3">
-                    <div className="sideBar">
-                        {this.props.pageTitle}
-                    </div>
+                    <SidebarComponent />
                     <div className="body flex-fill">
                         {this.props.children}
                     </div>
@@ -24,15 +20,5 @@ class Wrapper extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        mainPageTitle: state.ChangeMainPageTitle
-    };
-}
 
-const actions = {
-    ChangeMainPageTitle
-}
-
-
-export default connect(mapStateToProps,actions)(Wrapper);
+export default Wrapper;
