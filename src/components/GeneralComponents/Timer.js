@@ -13,7 +13,7 @@ class Timer extends Component {
           <h1>{this.props.title}</h1>
         </div>
         <div>
-          <h1 style={{ fontSize: 40 }}>
+          <h1 style={{ fontSize: 50 }}>
             { min < 10 ? "0" + min : min }:{ sec < 10 ? "0" + sec : sec }
           </h1>
         </div>

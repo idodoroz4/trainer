@@ -24,7 +24,7 @@ class RoundsInput extends Component {
                         </button>
                     </div>
                     <div className="d-flex justify-content-center rowPresentation">
-                        <h1 style={{ fontSize: 40 }}>
+                        <h1 style={{ fontSize: 60 }}>
                             {this.props.rounds}
                         </h1>
                     </div>

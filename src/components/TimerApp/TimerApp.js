@@ -140,4 +140,4 @@ const actions = {
   NextRound
 }
 
-export default connect(mapStateToProps,actions)(TimerApp);;
+export default connect(mapStateToProps,actions)(TimerApp);
