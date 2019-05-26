@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
     PlusRound,
     MinusRound
-} from './RoundsInputActions'
+} from './RoundsInputActions';
+import NumberCounter from '../GeneralComponents/NumberCounter';
 
 class RoundsInput extends Component {
     minusRound = () => {
@@ -13,29 +14,12 @@ class RoundsInput extends Component {
     }
     render() {
         return (
-            <div className="d-flex flex-row justify-content-around container body formRowWidth">
-                <div className="d-flex align-items-center formTitle">
-                    <h3>Rounds</h3>
-                </div>
-                <div className="d-flex flex-row justify-content-center flex-grow">
-                    <div className="d-flex justify-content-around">
-                        <button type="button" className="btn btn-outline-secondary" onClick={this.minusRound }>
-                            <i className="minus icon"></i>
-                        </button>
-                    </div>
-                    <div className="d-flex justify-content-center rowPresentation">
-                        <h1 style={{ fontSize: 60 }}>
-                            {this.props.rounds}
-                        </h1>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-outline-secondary" onClick={this.props.PlusRound}>
-                            <i className="plus icon"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+            <NumberCounter
+                title="Rounds"
+                num={this.props.rounds}
+                minus={this.minusRound}
+                plus={this.props.PlusRound}
+            />
         );
     }
 }
