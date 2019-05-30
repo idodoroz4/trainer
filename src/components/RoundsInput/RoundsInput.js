@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-    PlusRound,
-    MinusRound
-} from './RoundsInputActions';
+import {PlusRound, MinusRound} from './RoundsInputActions';
 import NumberCounter from '../GeneralComponents/NumberCounter';
 
 class RoundsInput extends Component {

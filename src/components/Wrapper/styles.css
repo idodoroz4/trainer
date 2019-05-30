@@ -25,12 +25,21 @@
     margin: 5px;
 }
 
+.speedButton {
+    width: 100px;
+    margin: 5px;
+}
+
 .container {
     padding: 10px;
 }
 
-.formTitle {
-    width: 150px;
+.rowTitleWidth {
+    width: 100px;
+}
+
+.RowContentWidth {
+    width: 350px;
 }
 
 .formBorder {

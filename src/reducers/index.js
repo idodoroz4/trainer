@@ -3,6 +3,7 @@ import { RoundsCount } from '../components/RoundsInput/RoundsInputReducers'
 import { ChangeIntervalTime, ChangeRestTime } from '../components/TimerInput/TimerInputReducers'
 import { TimerStatus, WorkoutStatus, RemainingSeconds, CurrentRound } from '../components/TimerApp/TimerAppReducers'
 import { MainPageTitle } from '../components/TitleComponent/TitleComponentReducers';
+import { CountTo } from '../components/CountToNumber/CountToNumberReducers';
 
 export default combineReducers({
     ChangeIntervalTime,
@@ -12,5 +13,6 @@ export default combineReducers({
     RemainingSeconds,
     CurrentRound,
     RoundsCount,
-    MainPageTitle
+    MainPageTitle,
+    CountTo
 });
