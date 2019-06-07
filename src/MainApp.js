@@ -6,8 +6,8 @@ import Wrapper from './components/Wrapper/Wrapper';
 const MainApp = () => {
     return(
       <div>
-        <Wrapper pageTitle="asd">
-          <CountForMe />
+        <Wrapper>
+          <TimerApp />
         </Wrapper>
       </div>
     )

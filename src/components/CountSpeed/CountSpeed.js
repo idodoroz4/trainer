@@ -8,15 +8,15 @@ class SpeedComponent extends Component {
         return(
             <RowComponent title="Speed">
                 <button
-                    onClick={() => {  }}
+                    onClick={() => this.props.ChangeSpeed(1500)}
                     className="btn btn-success btn-lg speedButton"
                 > Low </button>
                 <button
-                    onClick={() => {  }}
+                    onClick={() => this.props.ChangeSpeed(1000) }
                     className="btn btn-warning btn-lg speedButton"
                 > Medium </button>
                 <button
-                    onClick={() => {  }}
+                    onClick={() => this.props.ChangeSpeed(500) }
                     className="btn btn-danger btn-lg speedButton"
                 > High </button>
             </RowComponent>
@@ -24,4 +24,10 @@ class SpeedComponent extends Component {
     }
 }
 
-export default SpeedComponent;
+const mapStateToProps = (state) => {
+    return {
+        countSpeed: state.CountSpeed.countSpeed
+    }
+}
+
+export default connect(mapStateToProps,{ChangeSpeed})(SpeedComponent);

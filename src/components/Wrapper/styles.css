@@ -38,6 +38,10 @@
     width: 100px;
 }
 
+.RowStartButtonDims {
+    margin-top: 50px;
+    height: 85px;
+}
 .RowContentWidth {
     width: 350px;
 }

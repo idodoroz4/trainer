@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { RoundsCount } from '../components/RoundsInput/RoundsInputReducers'
-import { ChangeIntervalTime, ChangeRestTime } from '../components/TimerInput/TimerInputReducers'
+import { ChangeRestTime } from '../components/RestTimer/RestTimerReducers';
+import { ChangeIntervalTime } from '../components/IntervalTimer/IntervalTimerReducers';
 import { TimerStatus, WorkoutStatus, RemainingSeconds, CurrentRound } from '../components/TimerApp/TimerAppReducers'
 import { MainPageTitle } from '../components/TitleComponent/TitleComponentReducers';
 import { CountTo } from '../components/CountToNumber/CountToNumberReducers';
+import { CountSpeed } from '../components/CountSpeed/CountSpeedReducers';
 
 export default combineReducers({
     ChangeIntervalTime,
@@ -14,5 +16,6 @@ export default combineReducers({
     CurrentRound,
     RoundsCount,
     MainPageTitle,
-    CountTo
+    CountTo,
+    CountSpeed
 });
