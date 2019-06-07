@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const RowComponent = (props) => {
     return (
         <div className="d-flex flex-row justify-content-around container body formRowWidth">

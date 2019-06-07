@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TimerInput from '../TimerInput/TimerInput';
 import RoundsInput from '../RoundsInput/RoundsInput';
 import Timer from '../GeneralComponents/Timer';
+import IntervalTimer from '../IntervalTimer/IntervalTimer';
+import RestTimer from '../RestTimer/RestTimer';
 
 import {
   TimerClear,
@@ -79,8 +80,8 @@ class TimerApp extends Component {
         <div>
           { this.props.timerStatus === "CLEAR" &&
             <div>
-              <TimerInput title="Interval time" />
-              <TimerInput title="Rest time" />
+              <IntervalTimer />
+              <RestTimer />
               <RoundsInput />
             </div>
           }

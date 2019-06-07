@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import CountSpeed from '../CountSpeed/CountSpeed';
 import RoundsInput from '../RoundsInput/RoundsInput';
 import CountToNumber from '../CountToNumber/CountToNumber';
+import { StartButton } from '../GeneralComponents/StartButton';
+import RestTimer from '../RestTimer/RestTimer';
 
 class CountForMe extends Component {
     render(){
@@ -11,6 +13,8 @@ class CountForMe extends Component {
                 <CountToNumber />
                 <CountSpeed />
                 <RoundsInput />
+                <RestTimer />
+                <StartButton onClick={() => console.log("clicked!")} value="START" />
             </div>
         );
     }
