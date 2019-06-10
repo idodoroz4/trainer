@@ -5,8 +5,12 @@ import RoundsInput from '../RoundsInput/RoundsInput';
 import CountToNumber from '../CountToNumber/CountToNumber';
 import { StartButton } from '../GeneralComponents/StartButton';
 import RestTimer from '../RestTimer/RestTimer';
+import { ChangeMainPageTitle } from '../TitleComponent/TitleComponentActions';
 
 class CountForMe extends Component {
+    componentWillMount(){
+        this.props.ChangeMainPageTitle("Count For Me")
+    }
     render(){
         return(
             <div className="container">
@@ -20,4 +24,4 @@ class CountForMe extends Component {
     }
 }
 
-export default CountForMe;
+export default connect(null,{ChangeMainPageTitle})(CountForMe);

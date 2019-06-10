@@ -4,6 +4,7 @@ import RoundsInput from '../RoundsInput/RoundsInput';
 import Timer from '../GeneralComponents/Timer';
 import IntervalTimer from '../IntervalTimer/IntervalTimer';
 import RestTimer from '../RestTimer/RestTimer';
+import { ChangeMainPageTitle } from '../TitleComponent/TitleComponentActions';
 
 import {
   TimerClear,
@@ -24,6 +25,9 @@ class TimerApp extends Component {
     this.tickTime = 1000 // should be 1000 for production. change to 100 for testing
   }
 
+  componentWillMount(){
+    this.props.ChangeMainPageTitle("Interval Workout")
+  }
   nextRound = () => {
     if (this.props.rounds === this.props.currentRound){
       // Workout ended
@@ -138,7 +142,8 @@ const actions = {
   WorkoutRest,
   CurrentTime,
   ClearRounds,
-  NextRound
+  NextRound,
+  ChangeMainPageTitle
 }
 
 export default connect(mapStateToProps,actions)(TimerApp);

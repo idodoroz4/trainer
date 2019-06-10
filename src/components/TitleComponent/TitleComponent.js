@@ -5,7 +5,7 @@ class TitleComponent extends Component{
     render() {
         return(
             <div className="appTitle">
-                {this.props.mainPageTitle.mainPageTitle}
+                <h1>{this.props.mainPageTitle.mainPageTitle}</h1>
             </div>
         )
     }
