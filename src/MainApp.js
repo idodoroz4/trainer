@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import TimerApp from './components/TimerApp/TimerApp';
 import CountForMe from './components/CountForMeComponent/CountForMe'
 import Wrapper from './components/Wrapper/Wrapper';
@@ -9,18 +10,12 @@ class MainApp extends Component {
     return(
       <div>
         <Wrapper>
-          { this.props.currentApp === "Interval" && <TimerApp /> }
-          { this.props.currentApp === "CountForMe" && <CountForMe /> }
+          <Route exact={true} path="/IntervalWorkout" component={TimerApp} />
+          <Route exact={true} path="/CountForMe" component={CountForMe} />
         </Wrapper>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentApp: state.CurrentApp.currentApp
-  }
-}
-
-export default connect(mapStateToProps)(MainApp);
+export default MainApp;

@@ -6,7 +6,6 @@ import { TimerStatus, WorkoutStatus, RemainingSeconds, CurrentRound } from '../c
 import { MainPageTitle } from '../components/TitleComponent/TitleComponentReducers';
 import { CountTo } from '../components/CountToNumber/CountToNumberReducers';
 import { CountSpeed } from '../components/CountSpeed/CountSpeedReducers';
-import { CurrentApp } from '../components/SidebarComponent/SidebarComponentReducers';
 
 export default combineReducers({
     ChangeIntervalTime,
@@ -18,6 +17,5 @@ export default combineReducers({
     RoundsCount,
     MainPageTitle,
     CountTo,
-    CountSpeed,
-    CurrentApp
+    CountSpeed
 });
