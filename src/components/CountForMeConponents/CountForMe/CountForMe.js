@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CountSpeed from '../CountSpeed/CountSpeed';
-import RoundsInput from '../RoundsInput/RoundsInput';
+import CounterRoundsInput from '../CounterRoundsInput/CounterRoundsInput';
 import CountToNumber from '../CountToNumber/CountToNumber';
-import { StartButton } from '../GeneralComponents/StartButton';
-import RestTimer from '../RestTimer/RestTimer';
-import { ChangeMainPageTitle } from '../TitleComponent/TitleComponentActions';
+import { StartButton } from '../../GeneralComponents/StartButton';
+import CounterRestTimer from '../CounterRestTimer/CounterRestTimer';
+import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
 
 class CountForMe extends Component {
     componentWillMount(){
@@ -16,8 +16,8 @@ class CountForMe extends Component {
             <div className="container">
                 <CountToNumber />
                 <CountSpeed />
-                <RoundsInput />
-                <RestTimer />
+                <CounterRoundsInput />
+                <CounterRestTimer />
                 <StartButton onClick={() => console.log("clicked!")} value="START" />
             </div>
         );

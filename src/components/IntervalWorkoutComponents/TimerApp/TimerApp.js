@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RoundsInput from '../RoundsInput/RoundsInput';
-import Timer from '../GeneralComponents/Timer';
+import IntervalRoundsInput from '../IntervalRoundsInput/IntervalRoundsInput';
+import Timer from '../../GeneralComponents/Timer';
 import IntervalTimer from '../IntervalTimer/IntervalTimer';
-import RestTimer from '../RestTimer/RestTimer';
-import { ChangeMainPageTitle } from '../TitleComponent/TitleComponentActions';
+import IntervalRestTimer from '../IntervalRestTimer/IntervalRestTimer';
+import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
 
 import {
   TimerClear,
@@ -29,6 +29,8 @@ class TimerApp extends Component {
     this.props.ChangeMainPageTitle("Interval Workout")
   }
   nextRound = () => {
+    console.log(this.props.rounds)
+    console.log(this.props.currentRounds)
     if (this.props.rounds === this.props.currentRound){
       // Workout ended
       this.resetCountDown()
@@ -85,8 +87,8 @@ class TimerApp extends Component {
           { this.props.timerStatus === "CLEAR" &&
             <div>
               <IntervalTimer />
-              <RestTimer />
-              <RoundsInput />
+              <IntervalRestTimer />
+              <IntervalRoundsInput />
             </div>
           }
           { this.props.timerStatus !== "CLEAR" &&
@@ -124,12 +126,12 @@ class TimerApp extends Component {
 const mapStateToProps = (state) => {
     return {
         intervalTime: state.ChangeIntervalTime.intervalSeconds,
-        restTime: state.ChangeRestTime.restSeconds,
+        restTime: state.ChangeIntervalRestTime.restSeconds,
         timerStatus: state.TimerStatus.timerStatus,
         workoutStatus: state.WorkoutStatus.workoutStatus,
         remainingSeconds: state.RemainingSeconds.remainingSeconds,
         currentRound: state.CurrentRound.currentRound,
-        rounds: state.RoundsCount.rounds
+        rounds: state.IntervalRoundsCount.rounds
     };
 }
 
