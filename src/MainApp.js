@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import TimerApp from './components/TimerApp/TimerApp';
-import CountForMe from './components/CountForMeComponent/CountForMe'
+import TimerApp from './components/IntervalWorkoutComponents/TimerApp/TimerApp';
+import CountForMe from './components/CountForMeConponents/CountForMe/CountForMe'
 import Wrapper from './components/Wrapper/Wrapper';
 
 class MainApp extends Component {

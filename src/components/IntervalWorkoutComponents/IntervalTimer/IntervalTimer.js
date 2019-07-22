@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TimerInput from '../GeneralComponents/TimerInput';
+import TimerInput from '../../GeneralComponents/TimerInput';
 
 import {
     IntervalMinPlus,

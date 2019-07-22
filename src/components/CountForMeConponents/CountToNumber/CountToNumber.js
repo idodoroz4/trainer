@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PlusNumber, MinusNumber } from './CountToNumberActions';
-import NumberCounter from '../GeneralComponents/NumberCounter';
+import NumberCounter from '../../GeneralComponents/NumberCounter';
 
 class CountToNumber extends Component {
     minusNumber = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RowComponent from '../GeneralComponents/RowComponent';
+import RowComponent from '../../GeneralComponents/RowComponent';
 import { ChangeSpeed } from './CountSpeedActions';
 
 class SpeedComponent extends Component {
