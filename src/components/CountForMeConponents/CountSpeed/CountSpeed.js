@@ -8,17 +8,17 @@ class SpeedComponent extends Component {
         return(
             <RowComponent title="Speed">
                 <button
-                    onClick={() => this.props.ChangeSpeed(1500)}
+                    onClick={() => this.props.ChangeSpeed(10 * 1000)}
                     className="btn btn-success btn-lg speedButton"
-                > Low </button>
+                > 10 Sec </button>
+                <button
+                    onClick={() => this.props.ChangeSpeed(5 * 1000) }
+                    className="btn btn-warning btn-lg speedButton"
+                > 5 Sec </button>
                 <button
                     onClick={() => this.props.ChangeSpeed(1000) }
-                    className="btn btn-warning btn-lg speedButton"
-                > Medium </button>
-                <button
-                    onClick={() => this.props.ChangeSpeed(500) }
                     className="btn btn-danger btn-lg speedButton"
-                > High </button>
+                > 1 Sec </button>
             </RowComponent>
         )
     }
