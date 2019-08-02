@@ -131,7 +131,7 @@ const mapStateToProps = (state) => {
         workoutStatus: state.WorkoutStatus.workoutStatus,
         remainingSeconds: state.RemainingSeconds.remainingSeconds,
         currentRound: state.CurrentRound.currentRound,
-        rounds: state.IntervalRoundsCount.rounds
+        rounds: state.IntervalRoundsCount.intervalRounds
     };
 }
 
