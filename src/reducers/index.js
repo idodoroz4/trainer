@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { IntervalRoundsCount } from '../components/IntervalWorkoutComponents/IntervalRoundsInput/IntervalRoundsInputReducers';
 import { ChangeIntervalRestTime } from '../components/IntervalWorkoutComponents/IntervalRestTimer/IntervalRestTimerReducers'
 import { ChangeIntervalTime } from '../components/IntervalWorkoutComponents/IntervalTimer/IntervalTimerReducers';
-import { TimerStatus, WorkoutStatus, RemainingSeconds, CurrentRound } from '../components/IntervalWorkoutComponents/TimerApp/TimerAppReducers';
+import { TimerStatus, WorkoutStatus, RemainingSeconds, CurrentRound } from '../components/IntervalWorkoutComponents/IntervalClock/IntervalClockReducers';
 import { MainPageTitle } from '../components/TitleComponent/TitleComponentReducers';
 import { CountTo } from '../components/CountForMeConponents/CountToNumber/CountToNumberReducers';
 import { CountSpeed } from '../components/CountForMeConponents/CountSpeed/CountSpeedReducers';

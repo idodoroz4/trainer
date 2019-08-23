@@ -8,7 +8,7 @@ import CounterRestTimer from '../CounterRestTimer/CounterRestTimer';
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
 
 class CountForMe extends Component {
-    componentWillMount(){
+    componentDidMount(){
         this.props.ChangeMainPageTitle("Count For Me")
     }
     render(){
