@@ -26,4 +26,10 @@ class Timer extends Component {
   }
 }
 
-  export default Timer;
+/*
+<Sound
+          url={soundfile}
+          playStatus={playStatus}
+        />
+*/
+export default Timer;
