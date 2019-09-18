@@ -8,8 +8,8 @@ class CounterRoundsInput extends Component {
         return (
             <NumberCounter
                 title="Rounds"
-                num={this.props.CounterRounds}
-                minus={this.props.CounterRounds > 1 ? this.props.CounterMinusRound : () => {return this.props.CounterRounds}}
+                num={this.props.counterRounds}
+                minus={this.props.counterRounds > 1 ? this.props.CounterMinusRound : () => {return this.props.counterRounds}}
                 plus={this.props.CounterPlusRound}
             />
         );
@@ -18,7 +18,7 @@ class CounterRoundsInput extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        CounterRounds: state.CounterRoundsCount.CounterRounds
+        counterRounds: state.CounterRounds.counterRounds
     }
 }
 

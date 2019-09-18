@@ -107,10 +107,10 @@ const mapStateToProps = (state) => {
     return {
         intervalTime: state.ChangeIntervalTime.intervalSeconds,
         restTime: state.ChangeIntervalRestTime.intervalRestSeconds,
-        timerStatus: state.TimerStatus.timerStatus,
-        workoutStatus: state.WorkoutStatus.workoutStatus,
-        remainingSeconds: state.RemainingSeconds.remainingSeconds,
-        currentRound: state.CurrentRound.currentRound,
+        timerStatus: state.IntervalTimerStatus.timerStatus,
+        workoutStatus: state.IntervalWorkoutStatus.workoutStatus,
+        remainingSeconds: state.IntervalRemainingSeconds.remainingSeconds,
+        currentRound: state.IntervalCurrentRound.currentRound,
         rounds: state.IntervalRoundsCount.intervalRounds
     };
 }

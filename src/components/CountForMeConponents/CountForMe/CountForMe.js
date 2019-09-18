@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import CountSpeed from '../CountSpeed/CountSpeed';
 import CounterRoundsInput from '../CounterRoundsInput/CounterRoundsInput';
 import CountToNumber from '../CountToNumber/CountToNumber';
@@ -18,7 +20,9 @@ class CountForMe extends Component {
                 <CountSpeed />
                 <CounterRoundsInput />
                 <CounterRestTimer />
-                <StartButton onClick={() => console.log("clicked!")} value="START" />
+                <NavLink to="CountToClock">
+                    <StartButton value="START" />
+              </NavLink>
             </div>
         );
     }
