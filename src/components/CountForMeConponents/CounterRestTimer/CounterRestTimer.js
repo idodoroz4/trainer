@@ -16,7 +16,7 @@ const CounterRestInput = (props) => {
             plusSecond={props.CounterRestSecPlus}
             minusMinute={props.CounterRestMinMinus}
             plusMinute={props.CounterRestMinPlus}
-            seconds={props.CounterRestTime}
+            seconds={props.counterRestTime}
             title="Rest Time"
         />
     )
@@ -24,7 +24,7 @@ const CounterRestInput = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        CounterRestTime: state.ChangeCounterRestTime.CounterRestSeconds
+        counterRestTime: state.ChangeCounterRestTime.counterRestSeconds
     };
 }
 

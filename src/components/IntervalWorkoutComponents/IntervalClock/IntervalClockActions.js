@@ -37,12 +37,12 @@ export const CurrentTime = (remainingSeconds) => {
 
 export const NextRound = () => {
     return {
-        type: 'NEXT_ROUND'
+        type: 'INTERVAL_NEXT_ROUND'
     }
 }
 
 export const ClearRounds = () => {
     return {
-        type: 'CLEAR_ROUNDS'
+        type: 'INTERVAL_CLEAR_ROUNDS'
     }
 }

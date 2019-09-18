@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import IntervalRoundsInput from '../IntervalRoundsInput/IntervalRoundsInput';
-import Timer from '../../GeneralComponents/Timer';
 import IntervalTimer from '../IntervalTimer/IntervalTimer';
 import IntervalRestTimer from '../IntervalRestTimer/IntervalRestTimer';
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
@@ -27,7 +26,6 @@ class TimerApp extends Component {
               <NavLink to="IntervalClock">
                 <StartButton
                   disabled={this.props.intervalTime === 0}
-                  onClick={() => console.log("clicked!")}
                   value="START"
                 />
               </NavLink>

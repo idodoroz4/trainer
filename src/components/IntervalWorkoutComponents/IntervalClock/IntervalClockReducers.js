@@ -1,4 +1,4 @@
-export const TimerStatus = (state = {timerStatus: "ACTIVE"}, action) => {
+export const IntervalTimerStatus = (state = {timerStatus: "ACTIVE"}, action) => {
     // return timerStatus as followes :
     // STOPPED : stop button was pushed
     // ACTIVE : workout is active - timer is on countdown
@@ -9,7 +9,7 @@ export const TimerStatus = (state = {timerStatus: "ACTIVE"}, action) => {
     return {timerStatus: action.type }
 }
 
-export const WorkoutStatus = (state = {workoutStatus: "NONE"}, action) => {
+export const IntervalWorkoutStatus = (state = {workoutStatus: "NONE"}, action) => {
     // return workoutStatus as followes :
     // NONE : no workout taking place - start button wasn't pressed, or workout ended
     // INTERVAL : stopped button was pushed
@@ -21,7 +21,7 @@ export const WorkoutStatus = (state = {workoutStatus: "NONE"}, action) => {
     return { workoutStatus: action.type }
 }
 
-export const RemainingSeconds = ( state = { remainingSeconds: 0 }, action) => {
+export const IntervalRemainingSeconds = ( state = { remainingSeconds: 0 }, action) => {
     if (action.type === 'REMAINING_SECONDS'){
         return { remainingSeconds: action.payload }
     }
@@ -29,11 +29,11 @@ export const RemainingSeconds = ( state = { remainingSeconds: 0 }, action) => {
     return state
 }
 
-export const CurrentRound = (state = { currentRound: 1}, action) => {
+export const IntervalCurrentRound = (state = { currentRound: 1}, action) => {
     switch (action.type){
-        case "CLEAR_ROUNDS":
+        case "INTERVAL_CLEAR_ROUNDS":
             return { currentRound: 1 }
-        case "NEXT_ROUND":
+        case "INTERVAL_NEXT_ROUND":
             return { currentRound: state.currentRound + 1}
         default:
             return state
