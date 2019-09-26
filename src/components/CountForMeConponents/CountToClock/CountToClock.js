@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Timer from '../../GeneralComponents/Timer'
-
+import { BeepSound } from '../../GeneralComponents/Sounds'
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
 
 import {
@@ -19,17 +19,20 @@ class CountToClock extends Component {
         if (this.props.counterRounds === this.props.currentRound){
           // Workout ended
           this.resetCount()
+          console.log(this.props)
         } else {
           this.props.NextRound()
           this.props.CurrentCount(0)
           this.props.CountToWorkoutStatus("WORKOUT")
           this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
+          BeepSound.setVolume(0.8)
         }
     }
 
     restTick = () => {
         if (this.props.currentCount > 0) {
             this.props.CurrentCount(this.props.currentCount - 1)
+            BeepSound.play()
         } else {
             clearInterval(this.restIntervalHandler)
             this.nextRound()
@@ -40,12 +43,14 @@ class CountToClock extends Component {
         this.props.CountToWorkoutStatus("REST")
         this.props.CurrentCount(this.props.counterRestSeconds)
         clearInterval(this.intervalHandle)
+        BeepSound.setVolume(0.4)
         this.restIntervalHandler = setInterval(this.restTick, 1000);
     }
 
     tick = () => {
         if (this.props.currentCount < this.props.countToNumber){
             this.props.CurrentCount(this.props.currentCount + 1)
+            BeepSound.play()
         } else if (this.props.counterRestSeconds > 0 && this.props.workoutStatus === "WORKOUT") {
             this.switchToRest()
         } else {
@@ -78,7 +83,10 @@ class CountToClock extends Component {
     resetCount = () => {
         console.log("Countdown has been reset")
         this.props.CountToWorkoutStatus("NONE")
+        this.props.TimerStatus("ACTIVE")
         this.props.ClearRounds()
+        clearInterval(this.intervalHandle)
+        clearInterval(this.restIntervalHandler)
         this.props.history.push('/CountForMe')
     }
 
