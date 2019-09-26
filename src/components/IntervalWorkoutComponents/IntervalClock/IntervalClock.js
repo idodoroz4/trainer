@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Timer from '../../GeneralComponents/Timer';
-
+import { BeepSound } from '../../GeneralComponents/Sounds'
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
 
 import {
@@ -15,7 +15,6 @@ import {
   ClearRounds,
   NextRound,
 } from './IntervalClockActions';
-
 
 class IntervalClock extends Component {
     constructor(props){
@@ -31,13 +30,16 @@ class IntervalClock extends Component {
           this.props.NextRound()
           this.props.CurrentTime(this.props.intervalTime) // updates 'this.props.remainingSeconds'
           this.props.WorkoutInterval()
+          BeepSound.setVolume(0.8)
         }
     }
 
     tick = () => {
         if (this.props.remainingSeconds > 0){
             this.props.CurrentTime(this.props.remainingSeconds - 1)
+            BeepSound.play()
         } else if (this.props.restTime > 0 && this.props.workoutStatus === "INTERVAL") {
+            BeepSound.setVolume(0.2)
             this.props.WorkoutRest()
             this.props.CurrentTime(this.props.restTime)
         } else {
