@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
 import Timer from './Timer';
 import UpDownButtons from './UpDownButtons';
 import RowComponent from './RowComponent';

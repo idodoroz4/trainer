@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Timer from '../../GeneralComponents/Timer'
 import { BeepSound } from '../../GeneralComponents/Sounds'
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
-
+import { ProgressBar } from '../../GeneralComponents/ProgressBar';
 import {
   TimerStatus,
   CountToWorkoutStatus,
@@ -24,6 +24,7 @@ class CountToClock extends Component {
           this.props.NextRound()
           this.props.CurrentCount(0)
           this.props.CountToWorkoutStatus("WORKOUT")
+          clearInterval(this.intervalHandle)
           this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
           BeepSound.setVolume(0.8)
         }
@@ -112,23 +113,40 @@ class CountToClock extends Component {
                             title="Rest"
                             minutes={Math.floor(this.props.currentCount / 60)}
                             seconds={this.props.currentCount % 60}
-                            playSound={true}
                         />
                     }
-                <br/><br/>
-                <div className="row justify-content-md-center">
-                    <div className="col d-flex justify-content-center">
-                        <h2>{this.props.currentRound} / {this.props.counterRounds}</h2>
+                    <br/><br/>
+                    <div className="row justify-content-md-center">
+                        <div className="col d-flex justify-content-center">
+                            <h2>{this.props.currentRound} / {this.props.counterRounds}</h2>
+                        </div>
                     </div>
-                </div>
+                    <br/><br/>
+                    { this.props.workoutStatus === "WORKOUT" &&
+                        <ProgressBar
+                            color="bg-info"
+                            width={`${(this.props.currentCount)/this.props.countToNumber*100}`}
+                        />
+                    }
+                    { this.props.workoutStatus === "REST" &&
+                        <ProgressBar
+                            color="bg-warning"
+                            width={`${100-(this.props.currentCount)/this.props.counterRestSeconds*100}`}
+                        />
+                    }
+                    <br/><br/>
+                    <ProgressBar
+                        color="bg-success"
+                        width={`${(this.props.currentRound)/this.props.counterRounds*100}`}
+                    />
                 </div>
                 <br/><br/><br/>
                 <div className="row justify-content-md-center">
-                <div className="col d-flex justify-content-center">
-                    { this.props.timerStatus === "STOPPED" ? <button className="btn btn-success btn-lg" onClick={this.continueCount}>CONTINUE</button> : null }
-                    { this.props.timerStatus === "ACTIVE" ? <button className="btn btn-danger btn-lg" onClick={this.stopCount}>STOP</button> : null }
-                    { this.props.timerStatus === "STOPPED" ?  <button className="btn btn-warning btn-lg" onClick={this.resetCount}>RESET</button> : null }
-                </div>
+                    <div className="col d-flex justify-content-center">
+                        { this.props.timerStatus === "STOPPED" ? <button className="btn btn-success btn-lg" onClick={this.continueCount}>CONTINUE</button> : null }
+                        { this.props.timerStatus === "ACTIVE" ? <button className="btn btn-danger btn-lg" onClick={this.stopCount}>STOP</button> : null }
+                        { this.props.timerStatus === "STOPPED" ?  <button className="btn btn-warning btn-lg" onClick={this.resetCount}>RESET</button> : null }
+                    </div>
                 </div>
             </div>
         )

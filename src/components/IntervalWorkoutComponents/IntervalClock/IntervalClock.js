@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Timer from '../../GeneralComponents/Timer';
 import { BeepSound } from '../../GeneralComponents/Sounds'
 import { ChangeMainPageTitle } from '../../TitleComponent/TitleComponentActions';
-
+import { ProgressBar } from '../../GeneralComponents/ProgressBar';
 import {
   TimerStopped,
   TimerActive,
@@ -92,6 +92,24 @@ class IntervalClock extends Component {
                     </div>
                 </div>
                 </div>
+                <br/><br/>
+                { this.props.workoutStatus === "INTERVAL" &&
+                    <ProgressBar
+                        color="bg-info"
+                        width={`${100-(this.props.remainingSeconds)/this.props.intervalTime*100}`}
+                    />
+                }
+                { this.props.workoutStatus === "REST" &&
+                    <ProgressBar
+                        color="bg-warning"
+                        width={`${100-(this.props.remainingSeconds)/this.props.restTime*100}`}
+                    />
+                }
+                <br/><br/>
+                <ProgressBar
+                    color="bg-success"
+                    width={`${(this.props.currentRound)/this.props.rounds*100}`}
+                />
                 <br/><br/><br/>
                 <div className="row justify-content-md-center">
                 <div className="col d-flex justify-content-center">
