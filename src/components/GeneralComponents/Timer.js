@@ -6,8 +6,8 @@ class Timer extends Component {
     const sec = this.props.seconds
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <h1 style={{ fontSize: 50 }}>
+        { this.props.title && <h1>{this.props.title}</h1> }
+        <h1 style={{ fontSize: 60 }}>
           { min < 10 ? "0" + min : min }:{ sec < 10 ? "0" + sec : sec }
         </h1>
       </div>

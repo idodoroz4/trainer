@@ -1,4 +1,3 @@
-
 .appTitle {
     text-align: center;
     padding: 50px;
@@ -23,6 +22,10 @@
 .sidebarButton {
     width: 200px;
     margin: 5px;
+}
+
+.roundsButtonHeight {
+    height: 60px;
 }
 
 .speedButton {
