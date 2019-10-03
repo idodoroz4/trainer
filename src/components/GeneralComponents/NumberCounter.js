@@ -11,7 +11,7 @@ const NumberCounter = (props) => {
     return (
         <RowComponent title={props.title}>
             <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-outline-secondary" onClick={props.minus}>
+                <button type="button" className="btn btn-outline-secondary roundsButtonHeight" onClick={props.minus}>
                     <i className="minus icon"></i>
                 </button>
             </div>
@@ -21,7 +21,7 @@ const NumberCounter = (props) => {
                 </h1>
             </div>
             <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-outline-secondary" onClick={props.plus}>
+                <button type="button" className="btn btn-outline-secondary roundsButtonHeight" onClick={props.plus}>
                     <i className="plus icon"></i>
                 </button>
             </div>

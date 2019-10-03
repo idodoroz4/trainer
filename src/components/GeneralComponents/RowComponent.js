@@ -6,7 +6,7 @@ const RowComponent = (props) => {
             <div className="rowTitleWidth d-flex align-items-center formTitle">
                 <h3>{props.title}</h3>
             </div>
-            <div className="d-flex flex-row justify-content-center flex-grow RowContentWidth">
+            <div className="d-flex flex-row justify-content-center flex-grow RowContentWidth align-items-center">
                 {props.children}
             </div>
         </div>
