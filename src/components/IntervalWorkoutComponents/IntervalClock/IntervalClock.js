@@ -39,7 +39,7 @@ class IntervalClock extends Component {
             this.props.CurrentTime(this.props.remainingSeconds - 1)
             BeepSound.play()
         } else if (this.props.restTime > 0 && this.props.workoutStatus === "INTERVAL") {
-            BeepSound.setVolume(0.2)
+            BeepSound.setVolume(0.4)
             this.props.WorkoutRest()
             this.props.CurrentTime(this.props.restTime)
         } else {

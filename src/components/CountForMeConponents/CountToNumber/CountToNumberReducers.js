@@ -1,4 +1,4 @@
-export const CountTo = (state = { countToNumber: 10 } ,action) => {
+export const CountTo = (state = { countToNumber: 3 } ,action) => {
     switch (action.type){
         case "PLUS_NUMBER":
             return { countToNumber: state.countToNumber + 1}

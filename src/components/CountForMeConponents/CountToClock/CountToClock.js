@@ -15,6 +15,7 @@ import {
 
 
 class CountToClock extends Component {
+
     nextRound = () => {
         if (this.props.counterRounds === this.props.currentRound){
           // Workout ended
@@ -57,6 +58,17 @@ class CountToClock extends Component {
         } else {
             this.nextRound()
         }
+
+        // when Count is over go to the next round or rest time
+        setTimeout(() => {
+            if (this.props.currentCount === this.props.countToNumber) {
+                if (this.props.counterRestSeconds > 0 && this.props.workoutStatus === "WORKOUT") {
+                    this.switchToRest()
+                } else {
+                    this.nextRound()
+                }
+            }
+        }, 1500)
     }
 
     continueCount = () => {
@@ -84,7 +96,8 @@ class CountToClock extends Component {
     resetCount = () => {
         console.log("Countdown has been reset")
         this.props.CountToWorkoutStatus("NONE")
-        this.props.TimerStatus("ACTIVE")
+        this.props.TimerStatus("STOPPED")
+        this.props.CurrentCount(0)
         this.props.ClearRounds()
         clearInterval(this.intervalHandle)
         clearInterval(this.restIntervalHandler)
@@ -105,7 +118,7 @@ class CountToClock extends Component {
                 <div>
                     { this.props.workoutStatus === "WORKOUT" &&
                         <div className="col d-flex justify-content-center">
-                            <h1> {this.props.currentCount} </h1>
+                            <h1> {this.props.currentCount} / { this.props.countToNumber} </h1>
                         </div>
                     }
                     { this.props.workoutStatus === "REST" &&
@@ -115,12 +128,6 @@ class CountToClock extends Component {
                             seconds={this.props.currentCount % 60}
                         />
                     }
-                    <br/><br/>
-                    <div className="row justify-content-md-center">
-                        <div className="col d-flex justify-content-center">
-                            <h2>{this.props.currentRound} / {this.props.counterRounds}</h2>
-                        </div>
-                    </div>
                     <br/><br/>
                     { this.props.workoutStatus === "WORKOUT" &&
                         <ProgressBar
@@ -134,6 +141,13 @@ class CountToClock extends Component {
                             width={`${100-(this.props.currentCount)/this.props.counterRestSeconds*100}`}
                         />
                     }
+                    <br/><br/>
+                    <div className="row justify-content-md-center">
+                        <div className="col d-flex justify-content-center">
+                            <h2>{this.props.currentRound} / {this.props.counterRounds}</h2>
+                        </div>
+                    </div>
+
                     <br/><br/>
                     <ProgressBar
                         color="bg-success"
