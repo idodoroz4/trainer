@@ -36,7 +36,7 @@ module.exports = {
                 options: {
                     name: '[name].[ext]',
                     outputPath: 'data/sounds/',
-                    publicPath: 'data/sounds/'
+                    publicPath: 'public/data/sounds/'
                 }
             }
         }
