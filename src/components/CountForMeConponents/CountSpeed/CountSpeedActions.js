@@ -4,3 +4,16 @@ export const ChangeSpeed = (speed) => {
         payload: speed
     }
 }
+
+export const UseRandomSpeed = () => {
+    return {
+        type: 'USE_RANDOM_SPEED'
+    }
+}
+
+export const ChangeRandomRange = (randomRange) =>{
+    return {
+        type: "CHANGE_RANDOM_RANGE",
+        payload: randomRange
+    }
+}

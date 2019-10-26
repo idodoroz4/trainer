@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import "regenerator-runtime/runtime";
 
 import Timer from '../../GeneralComponents/Timer'
 import { BeepSound } from '../../GeneralComponents/Sounds'
@@ -20,14 +21,13 @@ class CountToClock extends Component {
         if (this.props.counterRounds === this.props.currentRound){
           // Workout ended
           this.resetCount()
-          console.log(this.props)
         } else {
           this.props.NextRound()
           this.props.CurrentCount(0)
           this.props.CountToWorkoutStatus("WORKOUT")
           clearInterval(this.intervalHandle)
-          this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
           BeepSound.setVolume(0.8)
+          this.triggerTick()
         }
     }
 
@@ -49,6 +49,22 @@ class CountToClock extends Component {
         this.restIntervalHandler = setInterval(this.restTick, 1000);
     }
 
+    triggerTick = () => {
+        if (this.props.useRandomSpeed) { // check also if max and min are not equal
+            this.randomTick()
+        } else {
+            this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
+        }
+    }
+
+    timeout = (ms) => { return new Promise(callback => this.timeoutHandler = setTimeout(callback, ms))};
+
+    async sleep(callback, ms) {
+        await this.timeout(ms);
+        callback()
+        return true
+    }
+
     tick = () => {
         if (this.props.currentCount < this.props.countToNumber){
             this.props.CurrentCount(this.props.currentCount + 1)
@@ -59,7 +75,9 @@ class CountToClock extends Component {
             this.nextRound()
         }
 
-        // when Count is over go to the next round or rest time
+        // When Count is over go to the next round or rest time
+        // In case the count interval is long ( more than 1 Sec ) we don't want to wait
+        // for a long time to pass to the next round or rest
         setTimeout(() => {
             if (this.props.currentCount === this.props.countToNumber) {
                 if (this.props.counterRestSeconds > 0 && this.props.workoutStatus === "WORKOUT") {
@@ -71,11 +89,22 @@ class CountToClock extends Component {
         }, 1500)
     }
 
+    async randomTick() {
+        const minRange = this.props.countRandomRange[0];
+        const maxRange = this.props.countRandomRange[1];
+        const waitUtilCount = Math.round(Math.random() * (maxRange - minRange)) + minRange;
+        console.log("Wait: ",waitUtilCount, " Seconds")
+        await this.sleep(this.tick, waitUtilCount * 1000);
+        if (this.props.currentCount < this.props.countToNumber) {
+            this.randomTick()
+        }
+    }
+
     continueCount = () => {
         console.log("Countdown continued")
         this.props.TimerStatus("ACTIVE")
         if ( this.props.workoutStatus === "WORKOUT"){
-            this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
+            this.triggerTick()
         }
         else {
             this.restIntervalHandler = setInterval(this.restTick, 1000);
@@ -86,6 +115,7 @@ class CountToClock extends Component {
         console.log("Countdown stopped")
         if ( this.props.workoutStatus === "WORKOUT"){
             clearInterval(this.intervalHandle)
+            clearTimeout(this.timeoutHandler)
         } else {
             clearInterval(this.restIntervalHandler)
         }
@@ -101,6 +131,7 @@ class CountToClock extends Component {
         this.props.ClearRounds()
         clearInterval(this.intervalHandle)
         clearInterval(this.restIntervalHandler)
+        clearTimeout(this.timeoutHandler)
         this.props.history.push('/CountForMe')
     }
 
@@ -109,7 +140,11 @@ class CountToClock extends Component {
         this.props.TimerStatus("ACTIVE")
         this.props.CountToWorkoutStatus("WORKOUT")
         this.props.CurrentCount(0)
-        this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
+        if (this.props.useRandomSpeed) { // check also if max and min are not equal
+            this.randomTick()
+        } else {
+            this.intervalHandle = setInterval(this.tick, this.props.counterSpeed);
+        }
     }
 
     render(){
@@ -173,6 +208,8 @@ const mapStateToProps = (state) => {
         counterRestSeconds: state.ChangeCounterRestTime.counterRestSeconds,
         counterRounds: state.CounterRounds.counterRounds,
         counterSpeed: state.CountSpeed.countSpeed,
+        useRandomSpeed: state.IsRandomSpeed.useRandomSpeed,
+        countRandomRange: state.ChangeRandomRange.countRandomRange,
 
         timerStatus: state.CounterTimerStatus.timerStatus,
         workoutStatus: state.CounterWorkoutStatus.countToWorkoutStatus,
