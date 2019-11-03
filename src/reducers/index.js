@@ -6,7 +6,7 @@ import { IntervalTimerStatus, IntervalWorkoutStatus, IntervalRemainingSeconds, I
 import { CounterTimerStatus, CounterWorkoutStatus, CounterCurrentCount, CounterCurrentRound } from '../components/CountForMeConponents/CountToClock/CountToClockReducers';
 import { MainPageTitle } from '../components/TitleComponent/TitleComponentReducers';
 import { CountTo } from '../components/CountForMeConponents/CountToNumber/CountToNumberReducers';
-import { CountSpeed } from '../components/CountForMeConponents/CountSpeed/CountSpeedReducers';
+import { CountSpeed, IsRandomSpeed, ChangeRandomRange } from '../components/CountForMeConponents/CountSpeed/CountSpeedReducers';
 import { CounterRounds } from '../components/CountForMeConponents/CounterRoundsInput/CounterRoundsInputReducers';
 import { ChangeCounterRestTime } from '../components/CountForMeConponents/CounterRestTimer/CounterRestTimerReducers';
 
@@ -26,6 +26,8 @@ export default combineReducers({
     CountTo,
     CountSpeed,
     CounterRounds,
-    ChangeCounterRestTime
+    ChangeCounterRestTime,
+    IsRandomSpeed,
+    ChangeRandomRange
 
 });

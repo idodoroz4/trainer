@@ -28,6 +28,13 @@
     height: 60px;
 }
 
+.randomSpeed {
+    width: 100px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px
+}
+
 .speedButton {
     width: 100px;
     text-align: center;
