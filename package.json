@@ -13,13 +13,12 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.3",
     "redux": "^4.0.1",
-    "uifx": "^2.0.3",
-    "webpack-merge": "^4.2.2"
+    "uifx": "^2.0.3"
   },
   "scripts": {
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "test": "echo \"No test has beem implemeted yet\"",
     "storybook": "start-storybook"
   },
